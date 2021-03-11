@@ -3,12 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ladeskab", "Ladeskab.csproj", "{384D84D2-CAFD-403A-A2B8-EB00480FF7D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ladeskab", "Ladeskab.csproj", "{384D84D2-CAFD-403A-A2B8-EB00480FF7D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ladeskab.Test.Unit", "..\Ladeskab.Test.Unit\Ladeskab.Test.Unit.csproj", "{11365632-8A73-481F-976C-91F516CBDE6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ladeskab.Test.Unit", "..\Ladeskab.Test.Unit\Ladeskab.Test.Unit.csproj", "{11365632-8A73-481F-976C-91F516CBDE6F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{384D84D2-CAFD-403A-A2B8-EB00480FF7D6} = {384D84D2-CAFD-403A-A2B8-EB00480FF7D6}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsbChageSimulator", "..\UsbChageSimulator\UsbChageSimulator.csproj", "{A27FED77-AEE8-40FC-B335-F75ADB571C57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,10 @@ Global
 		{11365632-8A73-481F-976C-91F516CBDE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11365632-8A73-481F-976C-91F516CBDE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11365632-8A73-481F-976C-91F516CBDE6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A27FED77-AEE8-40FC-B335-F75ADB571C57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A27FED77-AEE8-40FC-B335-F75ADB571C57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A27FED77-AEE8-40FC-B335-F75ADB571C57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A27FED77-AEE8-40FC-B335-F75ADB571C57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
