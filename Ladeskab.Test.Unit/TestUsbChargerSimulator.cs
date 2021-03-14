@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using UsbChageSimulator;
 
-namespace UsbChargeSimulator.Unit.Test
+namespace Ladeskab.Test.Unit
 {
     [TestFixture]
     public class TestUsbChargerSimulator

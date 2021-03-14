@@ -4,8 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UsbChageSimulator;
-
+using Ladeskab;
 
 namespace Ladeskab
 {
@@ -21,8 +20,9 @@ namespace Ladeskab
 
         // Her mangler flere member variable
         private LadeskabState _state;
-        private IUsbCharger _charger;
+        //private IChargeControl _charger;
         private int _oldId;
+        //private IDoor _door;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
@@ -35,10 +35,10 @@ namespace Ladeskab
             {
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
-                    if (_charger.Connected)
+                    //if (_charger.Connected)
                     {
                         //_door.LockDoor();
-                        _charger.StartCharge();
+                        //_charger.StartCharge();
                         _oldId = id;
                         using (var writer = File.AppendText(logFile))
                         {
@@ -48,7 +48,7 @@ namespace Ladeskab
                         Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
                     }
-                    else
+                    //else
                     {
                         Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
                     }
@@ -63,7 +63,7 @@ namespace Ladeskab
                     // Check for correct ID
                     if (id == _oldId)
                     {
-                        _charger.StopCharge();
+                        //_charger.StopCharge();
                         //_door.UnlockDoor();
                         using (var writer = File.AppendText(logFile))
                         {
