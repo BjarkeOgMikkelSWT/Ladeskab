@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Lock\LockSimulator.csproj" />
     <ProjectReference Include="..\UsbChageSimulator\UsbChageSimulator.csproj" />
   </ItemGroup>
 
