@@ -13,6 +13,7 @@ namespace Ladeskab.Test.Unit
         private const string StandardFileName = "testLog.txt";
         private const string DoorLockedText = "Door locked with ID: ";
         private const string DoorUnlockedText = "Door unlocked with ID: ";
+        private const string StartOfLogFileText = "Start of Log file created on ";
 
         [SetUp]
         public void SetUp()
@@ -23,7 +24,7 @@ namespace Ladeskab.Test.Unit
         [Test]
         public void NewlyCreatedFileGetsCorrectHeader()
         {
-            Assert.That(File.ReadAllText(StandardFileName), Does.Contain("Start of Log file created on " + DateTime.Now));
+            Assert.That(File.ReadAllText(StandardFileName), Does.Contain(StartOfLogFileText + DateTime.Now));
         }
 
         [Test]
@@ -39,6 +40,17 @@ namespace Ladeskab.Test.Unit
             var unused = new EventLogger.EventLogger(filename);
             Assert.That(File.Exists(filename), Is.True);
             File.Delete(filename);
+        }
+
+        [Test]
+        public void NewLoggerWithSameParameterDoesNotOverwriteFile()
+        {
+            var unused = new EventLogger.EventLogger(StandardFileName);
+
+            var temp = File.ReadAllLines(StandardFileName);
+            Assert.That(temp.Length, Is.EqualTo(2));
+            Assert.That(temp[0], Does.Contain(StartOfLogFileText));
+            Assert.That(temp[1], Does.Contain(StartOfLogFileText));
         }
 
         [TestCase(42)]
