@@ -22,6 +22,13 @@ namespace Ladeskab.Test.Unit
         }
 
         [Test]
+        public void TestNullPathArgumentCreatesFileWithStdName()
+        {
+            _logger = new EventLogger.EventLogger(null);
+            Assert.That(File.Exists("logfile.txt"), Is.True);
+        }
+
+        [Test]
         public void NewlyCreatedFileGetsCorrectHeader()
         {
             Assert.That(File.ReadAllText(StandardFileName), Does.Contain(StartOfLogFileText + DateTime.Now));

@@ -9,6 +9,11 @@ namespace EventLogger
         public EventLogger(string logFilename)
         {
 
+            if (logFilename == null)
+            {
+                logFilename = "logfile.txt";
+            }
+
             _logFilename = logFilename;
 
             //Create new file
