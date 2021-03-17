@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RFIDReaderSimulator
 {
-    public class RFIDReaderEventArgs
+    public class RFIDReaderEventArgs : EventArgs
     {
         public int RFID { get; set; }
     }

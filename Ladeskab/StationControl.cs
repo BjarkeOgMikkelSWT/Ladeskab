@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Charger;
 using EventLogger;
 using Ladeskab;
 using LockSimulator;
@@ -18,7 +19,7 @@ namespace Ladeskab
         {
             Available,
             Locked,
-            DoorOpen
+            //DoorOpen
         };
 
         // Her mangler flere member variable
@@ -26,18 +27,20 @@ namespace Ladeskab
 
         //private IChargeControl _charger;
         private int _oldId;
-        private ILock _lock;
-        private IEventLogger _logger;
+        private readonly ILock _lock;
+        private readonly IEventLogger _logger;
         private IRFIDReader _reader;
+        private readonly ICharger _charger;
 
         // Her mangler constructor
-        public StationControl(ILock doorLock, IEventLogger logger, IRFIDReader reader)
+        public StationControl(ILock doorLock, IEventLogger logger, IRFIDReader reader, ICharger charger)
         {
             _lock = doorLock;
             _logger = logger;
+            _charger = charger;
             _reader = reader;
             _reader.RFIDReadEvent += OnRFIDReadEvent;
-            
+            _state = _lock.LockState == ELockState.LockOpen ? LadeskabState.Available : LadeskabState.Locked;
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
@@ -47,32 +50,32 @@ namespace Ladeskab
             {
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
-                    //if (_charger.Connected)
-                {
-                    _lock.LockDoor();
-                    //_charger.StartCharge();
-                    _oldId = id;
-                    _logger.LogDoorLocked(_oldId);
+                    if (_charger.IsConnected())
+                    {
+                        _lock.LockDoor();
+                        _charger.StartCharge();
+                        _oldId = id;
+                        _logger.LogDoorLocked(_oldId);
 
-                    Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
-                    _state = LadeskabState.Locked;
-                }
-                    //else
-                {
-                    Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
-                }
+                        Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+                        _state = LadeskabState.Locked;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+                    }
 
                     break;
 
-                case LadeskabState.DoorOpen:
+                //case LadeskabState.DoorOpen:
                     // Ignore
-                    break;
+                    //break;
 
                 case LadeskabState.Locked:
                     // Check for correct ID
                     if (CheckID(id))
                     {
-                        //_charger.StopCharge();
+                        _charger.StopCharge();
                         _lock.UnlockDoor();
                         _logger.LogDoorUnlocked(id);
 
