@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EventLogger\EventLogger.csproj" />
     <ProjectReference Include="..\Lock\LockSimulator.csproj" />
+    <ProjectReference Include="..\ReaderSimulator\RFIDReaderSimulator.csproj" />
     <ProjectReference Include="..\UsbChageSimulator\UsbChageSimulator.csproj" />
   </ItemGroup>
 
