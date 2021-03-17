@@ -16,11 +16,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LockSimulator", "..\Lock\Lo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventLogger", "..\EventLogger\EventLogger.csproj", "{294BEC95-628F-4135-BC15-6A3F6BEDCB53}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Display", "..\Display\Display.csproj", "{09132CF7-8DFA-404A-BC44-5CEB22801045}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RFIDReaderSimulator", "..\ReaderSimulator\RFIDReaderSimulator.csproj", "{B6201E84-20EF-49FC-9A45-3B059F114E0D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Charger", "..\Charger\Charger.csproj", "{7C3F4554-CAFF-4EC2-866A-E65504CD6BE9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Display", "..\Display\Display.csproj", "{2C6CE35F-BFD1-4FFD-851C-4EFA2366DE76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,10 +48,6 @@ Global
 		{294BEC95-628F-4135-BC15-6A3F6BEDCB53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{294BEC95-628F-4135-BC15-6A3F6BEDCB53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{294BEC95-628F-4135-BC15-6A3F6BEDCB53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{09132CF7-8DFA-404A-BC44-5CEB22801045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09132CF7-8DFA-404A-BC44-5CEB22801045}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09132CF7-8DFA-404A-BC44-5CEB22801045}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09132CF7-8DFA-404A-BC44-5CEB22801045}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B6201E84-20EF-49FC-9A45-3B059F114E0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B6201E84-20EF-49FC-9A45-3B059F114E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6201E84-20EF-49FC-9A45-3B059F114E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -60,6 +56,10 @@ Global
 		{7C3F4554-CAFF-4EC2-866A-E65504CD6BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C3F4554-CAFF-4EC2-866A-E65504CD6BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C3F4554-CAFF-4EC2-866A-E65504CD6BE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C6CE35F-BFD1-4FFD-851C-4EFA2366DE76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C6CE35F-BFD1-4FFD-851C-4EFA2366DE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C6CE35F-BFD1-4FFD-851C-4EFA2366DE76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C6CE35F-BFD1-4FFD-851C-4EFA2366DE76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

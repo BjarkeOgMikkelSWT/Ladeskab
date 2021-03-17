@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Charger\Charger.csproj" />
     <ProjectReference Include="..\Display\Display.csproj" />
     <ProjectReference Include="..\EventLogger\EventLogger.csproj" />
     <ProjectReference Include="..\Ladeskab\Ladeskab.csproj" />
