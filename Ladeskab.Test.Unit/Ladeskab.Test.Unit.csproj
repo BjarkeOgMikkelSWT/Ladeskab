@@ -18,6 +18,7 @@
     <ProjectReference Include="..\EventLogger\EventLogger.csproj" />
     <ProjectReference Include="..\Ladeskab\Ladeskab.csproj" />
     <ProjectReference Include="..\Lock\LockSimulator.csproj" />
+    <ProjectReference Include="..\ReaderSimulator\RFIDReaderSimulator.csproj" />
     <ProjectReference Include="..\UsbChageSimulator\UsbChageSimulator.csproj" />
   </ItemGroup>
 
