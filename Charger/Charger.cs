@@ -1,5 +1,6 @@
 ﻿using System;
 using UsbChageSimulator;
+using Display;
 
 namespace Charger
 {
@@ -8,9 +9,10 @@ namespace Charger
         private readonly IUsbCharger _usbCharger;
         private readonly IDisplay _display;
 
-        public Charger(IUsbCharger usbCharger)
+        public Charger(IUsbCharger usbCharger,IDisplay display)
         {
             _usbCharger = usbCharger;
+            _display = display;
             usbCharger.CurrentValueEvent += HandleCurrentChangedEvent;
         }
 
@@ -20,7 +22,7 @@ namespace Charger
             if (Current > 500)
             {
                 StopCharge();
-                _Display.DisplayString("Charging Error");
+                _display.DisplayString("Charging Error");
             }
             else if (Current > 5 && Current <= 500)
             {
@@ -28,7 +30,7 @@ namespace Charger
             }
             else if (Current > 0 && Current <= 5)
             {
-                _Display.DisplayString("Fully Charged");
+                _display.DisplayString("Fully Charged");
             }
             else if (Current <= 0)
             {
@@ -49,7 +51,7 @@ namespace Charger
             if (Current > 500)
             {
                 StopCharge();
-                _Display.DisplayString("Charging Error");
+                _display.DisplayString("Charging Error");
             }
             else if (Current > 5 && Current <= 500)
             {
@@ -57,7 +59,7 @@ namespace Charger
             }
             else if (Current > 0 && Current <= 5)
             {
-                _Display.DisplayString("Fully Charged");
+                _display.DisplayString("Fully Charged");
             }
             else if (Current <= 0)
             {
