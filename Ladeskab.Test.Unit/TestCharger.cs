@@ -28,7 +28,7 @@ namespace Ladeskab.Test.Unit
         [Test]
         public void ConstructorSetupEvent()
         {
-            Assert.Fail();
+            _usbCharger.Received(1).CurrentValueEvent += Arg.Any<EventHandler<CurrentEventArgs>>();
         }
 
         [TestCase(true)]
