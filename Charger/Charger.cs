@@ -59,6 +59,7 @@ namespace Charger
             }
             else if (Current > 0 && Current <= 5)
             {
+                _usbCharger.StartCharge();
                 _display.DisplayString("Fully Charged");
             }
             else if (Current <= 0)
