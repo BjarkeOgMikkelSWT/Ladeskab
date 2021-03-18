@@ -27,9 +27,6 @@
     <ProjectReference Include="..\Ladeskab\Ladeskab.csproj" />
     <ProjectReference Include="..\Lock\LockSimulator.csproj" />
     <ProjectReference Include="..\ReaderSimulator\RFIDReaderSimulator.csproj" />
-    <ProjectReference Include="..\UsbChageSimulator\UsbChageSimulator.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\UsbChargeSimulator\UsbChageSimulator.csproj" />
   </ItemGroup>
   <ItemGroup Condition="$(VisualStudioVersion) == '16.0'">
