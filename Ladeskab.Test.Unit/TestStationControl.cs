@@ -10,6 +10,7 @@ using NSubstitute.Extensions;
 using NSubstitute.ReceivedExtensions;
 using NUnit.Framework;
 using RFIDReaderSimulator;
+using Door;
 
 namespace Ladeskab.Test.Unit
 {
@@ -22,6 +23,7 @@ namespace Ladeskab.Test.Unit
         private ICharger _charger;
         private IEventLogger _logger;
         private IDisplay _display;
+        private IDoor _door;
 
         [SetUp]
         public void SetUp()
@@ -31,14 +33,21 @@ namespace Ladeskab.Test.Unit
             _reader = Substitute.For<IRFIDReader>();
             _charger = Substitute.For<ICharger>();
             _display = Substitute.For<IDisplay>();
+            _door = Substitute.For<IDoor>();
 
-            _station = new StationControl(_lock, _logger, _reader, _charger, _display);
+            _station = new StationControl(_lock, _logger, _reader, _charger, _display,_door);
         }
 
         [Test]
         public void ConstructorSetsUpEventReceiverForRFIDReader()
         {
             _reader.Received().RFIDReadEvent += Arg.Any<EventHandler<RFIDReaderEventArgs>>();
+        }
+
+        [Test]
+        public void ConstructorSetsUpEventReceiverForDoor()
+        {
+            _door.Received().DoorChangedEvent += Arg.Any<EventHandler<DoorEventArg>>();
         }
 
         [Test]
@@ -123,6 +132,15 @@ namespace Ladeskab.Test.Unit
             _lock.Received(0).UnlockDoor();
             _logger.Received(0).LogDoorUnlocked(id);
             _display.Received(1).DisplayString("Forkert RFID tag");
+        }
+
+
+        [TestCase(DoorStateEnum.Closed,"Indlæs RFID")]
+        [TestCase(DoorStateEnum.Open,"Tilslut telefon")]
+        public void DoorChangedEventHandledCorrectly(DoorStateEnum doorStateIn,string expectedS)
+        {
+            _door.DoorChangedEvent += Raise.EventWith(new DoorEventArg { DoorState = doorStateIn });
+            _display.Received(1).DisplayString(expectedS);
         }
     }
 }
