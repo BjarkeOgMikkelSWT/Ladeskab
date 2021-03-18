@@ -150,5 +150,55 @@ namespace Ladeskab.Test.Unit
             }
         }
 
+        [Test]
+        public void CurrentChangedEventHandlerAtOverCurrent()
+        {
+            //Arange
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = 501 });
+
+            //Assert
+            _usbCharger.Received(1).StopCharge();
+            _display.Received(1).DisplayString("Charging Error");
+            _display.Received(0).DisplayString("Fully Charged");
+        }
+
+        [TestCase(5.1)]
+        [TestCase(500)]
+        public void CurrentChangedEventHandlerAtNormalCurrent(double current)
+        {
+            //Arange
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
+
+            //Assert
+            _usbCharger.Received(0).StopCharge();
+            _display.Received(0).DisplayString("Charging Error");
+            _display.Received(0).DisplayString("Fully Charged");
+        }
+
+        [TestCase(5)]
+        [TestCase(0.1)]
+        public void CurrentChangedEventHandlerAtLowCurrent(double current)
+        {
+            //Arange
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
+
+            //Assert
+            _usbCharger.Received(0).StopCharge();
+            _display.Received(0).DisplayString("Charging Error");
+            _display.Received(1).DisplayString("Fully Charged");
+        }
+
+        [TestCase(0)]
+        [TestCase(-6)]
+        public void CurrentChangedEventHandlerAtNoCurrent(double current)
+        {
+            //Arange
+            _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs { Current = current });
+
+            //Assert
+            _usbCharger.Received(1).StopCharge();
+            _display.Received(0).DisplayString("Charging Error");
+            _display.Received(0).DisplayString("Fully Charged");
+        }
     }
 }
