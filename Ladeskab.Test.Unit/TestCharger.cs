@@ -15,7 +15,6 @@ namespace Ladeskab.Test.Unit
     {
         private Charger.Charger _uut;
         private IUsbCharger _usbCharger;
-        private UsbChageSimulator.UsbChargerSimulator _usbSimulator;
         private IDisplay _display;
         [SetUp]
         public void Setup()
@@ -57,10 +56,10 @@ namespace Ladeskab.Test.Unit
         [TestCase(5.1, false)]
         [TestCase(500, false)]
         [TestCase(500.1, true)]
-        public void StartChargeCallsStopChargeAtCorrectCurrents(double Current,bool expectedCall)
+        public void StartChargeCallsStopChargeAtCorrectCurrents(double current,bool expectedCall)
         {
             //Arange
-            _usbCharger.CurrentValue.Returns(Current);
+            _usbCharger.CurrentValue.Returns(current);
 
             //Action
             _uut.StartCharge();
