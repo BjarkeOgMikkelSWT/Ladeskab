@@ -45,26 +45,7 @@ namespace Charger
 
         public void StartCharge()
         {
-            double Current = MesureCurrent();
-
-            if (Current > 500)
-            {
-                StopCharge();
-                _display.DisplayString("Charging Error");
-            }
-            else if (Current > 5 && Current <= 500)
-            {
-                _usbCharger.StartCharge();
-            }
-            else if (Current > 0 && Current <= 5)
-            {
-                _usbCharger.StartCharge();
-                _display.DisplayString("Fully Charged");
-            }
-            else if (Current <= 0)
-            {
-                StopCharge();
-            }
+            _usbCharger.StartCharge();
         }
 
         public void StopCharge()
