@@ -29,9 +29,7 @@ namespace UsbChageSimulator
             Connected = true;
             _overload = false;
 
-            _timer = new System.Timers.Timer();
-            _timer.Enabled = false;
-            _timer.Interval = CurrentTickInterval;
+            _timer = new Timer {Enabled = false, Interval = CurrentTickInterval};
             _timer.Elapsed += TimerOnElapsed;
         }
 
@@ -99,12 +97,15 @@ namespace UsbChageSimulator
 
         public void StopCharge()
         {
-            _timer.Stop();
+            if (_charging)
+            {
+                _timer.Stop();
 
-            CurrentValue = 0.0;
-            OnNewCurrent();
+                CurrentValue = 0.0;
+                _charging = false;
 
-            _charging = false;
+                OnNewCurrent();
+            }
         }
 
         private void OnNewCurrent()
