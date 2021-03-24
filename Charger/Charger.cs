@@ -34,7 +34,6 @@ namespace Charger
             }
             else if (Current <= 0)
             {
-                //Do nothing
                 StopCharge();
             }
         }
