@@ -1,5 +1,4 @@
-﻿using System;
-using UsbChageSimulator;
+﻿using UsbChageSimulator;
 using Display;
 
 namespace Charger
@@ -18,21 +17,21 @@ namespace Charger
 
         private void HandleCurrentChangedEvent(object sender, CurrentEventArgs e)
         {
-            double Current = e.Current;
-            if (Current > 500)
+            double current = e.Current;
+            if (current > 500)
             {
                 StopCharge();
                 _display.DisplayString("Charging Error");
             }
-            else if (Current > 5 && Current <= 500)
+            else if (current > 5 && current <= 500)
             {
                 //Do nothing
             }
-            else if (Current > 0 && Current <= 5)
+            else if (current > 0 && current <= 5)
             {
                 _display.DisplayString("Fully Charged");
             }
-            else if (Current <= 0)
+            else if (current <= 0)
             {
                 StopCharge();
             }
@@ -51,11 +50,6 @@ namespace Charger
         public void StopCharge()
         {
             _usbCharger.StopCharge();
-        }
-
-        private double MesureCurrent()
-        {
-            return _usbCharger.CurrentValue;
         }
     }
 }

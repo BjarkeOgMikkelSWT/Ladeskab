@@ -15,9 +15,9 @@ namespace Ladeskab.Test.Unit
         }
 
         [Test]
-        public void ctor_IsNotConnected()
+        public void ctor_IsConnected()
         {
-            Assert.That(_uut.Connected, Is.False);
+            Assert.That(_uut.Connected, Is.True);
         }
 
         [Test]
@@ -95,12 +95,11 @@ namespace Ladeskab.Test.Unit
                 pause.Set();
             };
 
-            // Next value should be high
-            _uut.SimulateConnected(true);
-            _uut.SimulateOverload(true);
-
             // Start
             _uut.StartCharge();
+
+            // Next value should be high
+            _uut.SimulateOverload(true);
 
             // Reset event
             pause.Reset();
@@ -150,18 +149,18 @@ namespace Ladeskab.Test.Unit
             };
 
             // First value should be high
-            _uut.SimulateConnected(true);
             _uut.SimulateOverload(true);
 
             // Start
             _uut.StartCharge();
 
             // Should not wait for first tick, should send overload immediately
+
             Assert.That(lastValue, Is.GreaterThan(500.0));
         }
 
         [Test]
-        public void SimulateDisconnected_Start_ReceivesLastValueImmediately()
+        public void SimulateDisconnected_Start_ReceivesZeroValueImmediately()
         {
             double lastValue = 1000;
 
@@ -173,8 +172,12 @@ namespace Ladeskab.Test.Unit
             // First value should be high
             _uut.SimulateConnected(false);
 
+            // Start
+            _uut.StartCharge();
+
             // Should not wait for first tick, should send zero immediately
-            Assert.That(lastValue, Is.EqualTo(1000));
+
+            Assert.That(lastValue, Is.Zero);
         }
 
         [Test]
