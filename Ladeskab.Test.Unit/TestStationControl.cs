@@ -6,8 +6,6 @@ using Display;
 using EventLogger;
 using LockSimulator;
 using NSubstitute;
-using NSubstitute.Extensions;
-using NSubstitute.ReceivedExtensions;
 using NUnit.Framework;
 using RFIDReaderSimulator;
 using Door;
